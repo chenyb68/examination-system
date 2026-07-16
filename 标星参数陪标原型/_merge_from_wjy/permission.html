@@ -1,0 +1,84 @@
+<section class="page" id="page-permission">
+        <div class="notice"><span class="star">★</span>（4）权限控制：管理权限（系统/部门/课程管理员等）+ 课程权限（录题、审题、删改试题、组卷方案、组卷、导出试卷、安排考试等）；题库支持多管理员/成员，非成员无权访问。</div>
+        <div class="tabs">
+          <button class="tab active" data-tab="tab-role">管理权限配置</button>
+          <button class="tab" data-tab="tab-course-perm">课程权限配置</button>
+          <button class="tab" data-tab="tab-bank-perm">题库访问隔离</button>
+        </div>
+        <div class="tab-pane active" id="tab-role">
+          <div class="card">
+            <div class="card-hd">
+              <span>角色列表</span>
+              <button class="btn btn-sm btn-primary" type="button" onclick="openRoleEditor()">+ 新增角色</button>
+            </div>
+            <div class="card-bd table-wrap">
+              <table class="data">
+                <thead><tr><th>角色</th><th>说明</th><th>人数</th><th>人员</th><th>操作</th></tr></thead>
+                <tbody id="roleTableBody"></tbody>
+              </table>
+              <div class="hint" style="margin-top:8px;">可编辑角色信息与人员名单，也可删除角色。人数随人员增减自动更新。</div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab-course-perm">
+          <div class="card">
+            <div class="card-hd">选择要配置的学科 / 课程</div>
+            <div class="card-bd">
+              <div class="form-row">
+                <div class="form-item"><label><span class="req">*</span>学科</label>
+                  <select id="coursePermSubject">
+                    <option value="">请选择学科</option>
+                    <option value="math">理学</option>
+                    <option value="eng">外语</option>
+                    <option value="cs">工学·计算机</option>
+                    <option value="phy">理学·物理</option>
+                  </select>
+                </div>
+                <div class="form-item"><label><span class="req">*</span>课程</label>
+                  <select id="coursePermCourse" disabled>
+                    <option value="">请先选择学科</option>
+                  </select>
+                </div>
+              </div>
+              <div class="hint" id="coursePermSelectHint">请先选择学科，再选择具体课程，然后配置该课程权限。</div>
+            </div>
+          </div>
+          <div class="card" id="coursePermConfigCard" style="display:none;">
+            <div class="card-hd">
+              <span>课程权限项 · <span id="coursePermTitle">—</span></span>
+              <span class="hint" id="coursePermPath"></span>
+            </div>
+            <div class="card-bd">
+              <div class="inline-checks" id="coursePermChecks">
+                <label><input type="checkbox" data-perm="录题" /> 录题</label>
+                <label><input type="checkbox" data-perm="审题" /> 审题</label>
+                <label><input type="checkbox" data-perm="删改试题" /> 删改试题</label>
+                <label><input type="checkbox" data-perm="管理组卷方案" /> 管理组卷方案</label>
+                <label><input type="checkbox" data-perm="组卷" /> 组卷</label>
+                <label><input type="checkbox" data-perm="导出试卷文档" /> 导出试卷文档</label>
+                <label><input type="checkbox" data-perm="安排考试" /> 安排考试</label>
+              </div>
+              <div class="divider"></div>
+              <div class="btn-group">
+                <button class="btn btn-primary" type="button" onclick="saveCoursePerm()">保存权限</button>
+                <button class="btn" type="button" onclick="resetCoursePerm()">恢复默认全开</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab-bank-perm">
+          <div class="card">
+            <div class="card-hd">
+              <span>题库成员 · 高等数学题库</span>
+              <button class="btn btn-sm btn-primary" type="button" onclick="openAddBankMember()">+ 添加成员</button>
+            </div>
+            <div class="card-bd table-wrap">
+              <table class="data">
+                <thead><tr><th>成员</th><th>部门/信息</th><th>身份</th><th>访问</th><th>操作</th></tr></thead>
+                <tbody id="bankMemberBody"></tbody>
+              </table>
+              <div class="hint" style="margin-top:8px;">单个题库支持多个管理员和成员；非成员显示「无权访问」，可「添加为成员」；成员可「移除」。</div>
+            </div>
+          </div>
+        </div>
+      </section>

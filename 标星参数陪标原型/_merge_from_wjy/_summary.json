@@ -1,0 +1,107 @@
+{
+  "ranges": {
+    "page-scheme": [
+      455,
+      558
+    ],
+    "page-answerSheet": [
+      561,
+      641
+    ],
+    "page-ocr": [
+      644,
+      700
+    ],
+    "page-analysis": [
+      703,
+      1032
+    ],
+    "page-permission": [
+      1035,
+      1118
+    ],
+    "page-bankApply": [
+      1121,
+      1209
+    ],
+    "page-qTag": [
+      1212,
+      1239
+    ],
+    "page-paperDup": [
+      1242,
+      1283
+    ]
+  },
+  "modals": [
+    {
+      "id": "modalHistory",
+      "lines": [
+        1341,
+        1380
+      ]
+    },
+    {
+      "id": "modalRoleEdit",
+      "lines": [
+        1382,
+        1406
+      ]
+    },
+    {
+      "id": "modalBankAdd",
+      "lines": [
+        1408,
+        1425
+      ]
+    },
+    {
+      "id": "modalDupLocate",
+      "lines": [
+        1427,
+        1444
+      ]
+    },
+    {
+      "id": "modalBankDetail",
+      "lines": [
+        1446,
+        1458
+      ]
+    },
+    {
+      "id": "modalBankFlow",
+      "lines": [
+        1460,
+        1480
+      ]
+    },
+    {
+      "id": "modalDupEdit",
+      "lines": [
+        1482,
+        1507
+      ]
+    },
+    {
+      "id": "modalFixTag",
+      "lines": [
+        1509,
+        1524
+      ]
+    }
+  ],
+  "unique_id_count": 76,
+  "dup_id_count": 23,
+  "missing_css_count": 10,
+  "module_func_counts": {
+    "scheme": 24,
+    "answerSheet": 0,
+    "ocr": 13,
+    "analysis": 2,
+    "permission": 0,
+    "bankApply": 6,
+    "qTag": 4,
+    "paperDup": 0
+  }
+}

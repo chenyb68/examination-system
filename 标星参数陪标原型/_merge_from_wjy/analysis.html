@@ -1,0 +1,330 @@
+<section class="page" id="page-analysis">
+        <div class="notice"><span class="star">★</span> 试卷分析含难度/信度/效度/区分度、小题得分、题型分析、知识点得分、成绩分布、缺考统计；课程总体含甲乙丙丁等级分布与正态可视化；班级分析各维度均有对比图并可导出。</div>
+        <div class="tabs">
+          <button class="tab active" data-tab="tab-paper">试卷分析</button>
+          <button class="tab" data-tab="tab-course">课程总体成绩分析</button>
+          <button class="tab" data-tab="tab-class">班级考核数据分析</button>
+        </div>
+
+        <div class="tab-pane active" id="tab-paper">
+          <div class="toolbar">
+            <select id="paperExamSelect" style="width:280px">
+              <option>高等数学期末A卷</option>
+              <option>大学英语期末卷</option>
+              <option>程序设计基础期末卷</option>
+            </select>
+            <button class="btn btn-sm" onclick="exportAnalysis('paper')">导出 PDF</button>
+          </div>
+          <div class="grid-3" style="margin-bottom:16px;grid-template-columns:repeat(5,1fr);">
+            <div class="stat-box"><div class="num">76.4</div><div class="lbl">平均得分</div></div>
+            <div class="stat-box"><div class="num">0.72</div><div class="lbl">难度</div></div>
+            <div class="stat-box"><div class="num">0.85</div><div class="lbl">信度</div></div>
+            <div class="stat-box"><div class="num">0.78</div><div class="lbl">效度</div></div>
+            <div class="stat-box"><div class="num">0.41</div><div class="lbl">区分度</div></div>
+          </div>
+
+          <div class="card">
+            <div class="card-hd">小题得分情况（各小题平均分）</div>
+            <div class="card-bd">
+              <div class="chart-box" style="margin-bottom:12px;">
+                <div class="bar-chart" style="height:120px;" id="subQChart">
+                  <div class="bar" style="height:92%"><em>4.6</em><span>选1</span></div>
+                  <div class="bar" style="height:80%"><em>4.0</em><span>选2</span></div>
+                  <div class="bar" style="height:70%"><em>3.5</em><span>选3</span></div>
+                  <div class="bar" style="height:88%"><em>4.4</em><span>选4</span></div>
+                  <div class="bar" style="height:48%;background:#faad14"><em>2.4</em><span>选5</span></div>
+                  <div class="bar" style="height:76%"><em>3.8</em><span>填1</span></div>
+                  <div class="bar" style="height:62%"><em>3.1</em><span>填2</span></div>
+                  <div class="bar" style="height:54%"><em>2.7</em><span>填3</span></div>
+                  <div class="bar" style="height:68%"><em>6.8</em><span>大1-1</span></div>
+                  <div class="bar" style="height:45%;background:#faad14"><em>4.5</em><span>大1-2</span></div>
+                  <div class="bar" style="height:58%"><em>5.8</em><span>大2-1</span></div>
+                  <div class="bar" style="height:40%;background:#ff4d4f"><em>4.0</em><span>大2-2</span></div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="data">
+                  <thead><tr><th>小题</th><th>题型</th><th>满分</th><th>平均得分</th><th>得分率</th><th>难度</th><th>区分度</th></tr></thead>
+                  <tbody>
+                    <tr><td>选择题第1题</td><td>选择题</td><td>5</td><td>4.6</td><td>92%</td><td>0.92</td><td>0.21</td></tr>
+                    <tr><td>选择题第2题</td><td>选择题</td><td>5</td><td>4.0</td><td>80%</td><td>0.80</td><td>0.28</td></tr>
+                    <tr><td>选择题第3题</td><td>选择题</td><td>5</td><td>3.5</td><td>70%</td><td>0.70</td><td>0.35</td></tr>
+                    <tr><td>选择题第4题</td><td>选择题</td><td>5</td><td>4.4</td><td>88%</td><td>0.88</td><td>0.24</td></tr>
+                    <tr><td>选择题第5题</td><td>选择题</td><td>5</td><td>2.4</td><td>48%</td><td>0.48</td><td>0.55</td></tr>
+                    <tr><td>填空题第1题</td><td>填空题</td><td>5</td><td>3.8</td><td>76%</td><td>0.76</td><td>0.32</td></tr>
+                    <tr><td>填空题第2题</td><td>填空题</td><td>5</td><td>3.1</td><td>62%</td><td>0.62</td><td>0.41</td></tr>
+                    <tr><td>填空题第3题</td><td>填空题</td><td>5</td><td>2.7</td><td>54%</td><td>0.54</td><td>0.47</td></tr>
+                    <tr><td>解答题第一大题 · 第1小题</td><td>大题</td><td>10</td><td>6.8</td><td>68%</td><td>0.68</td><td>0.38</td></tr>
+                    <tr><td>解答题第一大题 · 第2小题</td><td>大题</td><td>10</td><td>4.5</td><td>45%</td><td>0.45</td><td>0.52</td></tr>
+                    <tr><td>解答题第二大题 · 第1小题</td><td>大题</td><td>10</td><td>5.8</td><td>58%</td><td>0.58</td><td>0.44</td></tr>
+                    <tr><td>解答题第二大题 · 第2小题</td><td>大题</td><td>10</td><td>4.0</td><td>40%</td><td>0.40</td><td>0.56</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-hd">题型分析（选择题 / 填空题 / 大题）</div>
+              <div class="card-bd">
+                <div class="chart-box">
+                  <div class="bar-chart">
+                    <div class="bar" style="height:78%"><em>78%</em><span>选择题</span></div>
+                    <div class="bar" style="height:64%"><em>64%</em><span>填空题</span></div>
+                    <div class="bar" style="height:53%"><em>53%</em><span>大题</span></div>
+                  </div>
+                </div>
+                <div class="table-wrap" style="margin-top:28px;">
+                  <table class="data">
+                    <thead><tr><th>题型</th><th>题量</th><th>满分合计</th><th>平均得分</th><th>得分率</th></tr></thead>
+                    <tbody>
+                      <tr><td>选择题</td><td>5</td><td>25</td><td>18.9</td><td>75.6%</td></tr>
+                      <tr><td>填空题</td><td>3</td><td>15</td><td>9.6</td><td>64.0%</td></tr>
+                      <tr><td>大题</td><td>4小题 / 2大题</td><td>40</td><td>21.1</td><td>52.8%</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-hd">知识点得分情况</div>
+              <div class="card-bd">
+                <div class="chart-box">
+                  <div class="bar-chart">
+                    <div class="bar" style="height:88%"><em>88%</em><span>极限</span></div>
+                    <div class="bar" style="height:72%"><em>72%</em><span>导数</span></div>
+                    <div class="bar" style="height:48%;background:#faad14"><em>48%</em><span>积分</span></div>
+                    <div class="bar" style="height:61%"><em>61%</em><span>微分方程</span></div>
+                    <div class="bar" style="height:55%"><em>55%</em><span>级数</span></div>
+                  </div>
+                </div>
+                <div class="table-wrap" style="margin-top:28px;">
+                  <table class="data">
+                    <thead><tr><th>知识点</th><th>关联小题</th><th>得分率</th><th>掌握评价</th></tr></thead>
+                    <tbody>
+                      <tr><td>极限</td><td>选1、选2</td><td>88%</td><td><span class="tag tag-green">良好</span></td></tr>
+                      <tr><td>导数与微分</td><td>选3、填1</td><td>72%</td><td><span class="tag tag-blue">一般</span></td></tr>
+                      <tr><td>积分</td><td>选5、大1-2</td><td>48%</td><td><span class="tag tag-orange">薄弱</span></td></tr>
+                      <tr><td>微分方程</td><td>填2、大2-1</td><td>61%</td><td><span class="tag tag-blue">一般</span></td></tr>
+                      <tr><td>级数</td><td>填3、大2-2</td><td>55%</td><td><span class="tag tag-orange">偏弱</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-hd">成绩分布情况</div>
+              <div class="card-bd">
+                <div class="chart-box">
+                  <div class="bar-chart">
+                    <div class="bar" style="height:10%;background:#ff4d4f"><em>3</em><span>&lt;60</span></div>
+                    <div class="bar" style="height:35%"><em>18</em><span>60-69</span></div>
+                    <div class="bar" style="height:55%"><em>28</em><span>70-79</span></div>
+                    <div class="bar" style="height:70%"><em>36</em><span>80-89</span></div>
+                    <div class="bar" style="height:40%;background:#52c41a"><em>20</em><span>≥90</span></div>
+                  </div>
+                </div>
+                <p class="hint" style="margin-top:28px;">区间人数：不及格3 · 及格18 · 中等28 · 良好36 · 优秀20</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-hd">缺考情况统计</div>
+              <div class="card-bd">
+                <div class="grid-3" style="margin-bottom:12px;">
+                  <div class="stat-box"><div class="num">108</div><div class="lbl">应考人数</div></div>
+                  <div class="stat-box"><div class="num">105</div><div class="lbl">实考人数</div></div>
+                  <div class="stat-box"><div class="num" style="color:#ff4d4f">3</div><div class="lbl">缺考（2.8%）</div></div>
+                </div>
+                <div class="table-wrap">
+                  <table class="data">
+                    <thead><tr><th>学号</th><th>姓名</th><th>班级</th><th>缺考原因</th></tr></thead>
+                    <tbody>
+                      <tr><td>2024010108</td><td>张*</td><td>01班</td><td>病假</td></tr>
+                      <tr><td>2024010221</td><td>李*</td><td>02班</td><td>未说明</td></tr>
+                      <tr><td>2024010315</td><td>王*</td><td>03班</td><td>缓考申请中</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-course">
+          <div class="card">
+            <div class="card-hd">
+              <span>课程总体成绩分析 · 高等数学</span>
+              <button class="btn btn-sm" onclick="exportAnalysis('course')">导出 PDF</button>
+            </div>
+            <div class="card-bd">
+              <div class="grid-3" style="margin-bottom:16px;">
+                <div class="stat-box"><div class="num">96</div><div class="lbl">最高分</div></div>
+                <div class="stat-box"><div class="num">42</div><div class="lbl">最低分</div></div>
+                <div class="stat-box"><div class="num">76.4</div><div class="lbl">平均分</div></div>
+              </div>
+              <div class="grid-3" style="margin-bottom:16px;">
+                <div class="stat-box"><div class="num">91%</div><div class="lbl">及格率</div></div>
+                <div class="stat-box"><div class="num">28%</div><div class="lbl">优良率（甲+乙）</div></div>
+                <div class="stat-box"><div class="num">近似正态</div><div class="lbl">正态性结论</div></div>
+              </div>
+
+              <div class="grid-2">
+                <div>
+                  <h4 style="font-size:14px;margin-bottom:10px;">成绩等级分布（甲乙丙丁）</h4>
+                  <div class="chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:20%;background:#52c41a"><em>20</em><span>甲</span></div>
+                      <div class="bar" style="height:36%"><em>36</em><span>乙</span></div>
+                      <div class="bar" style="height:28%"><em>28</em><span>丙</span></div>
+                      <div class="bar" style="height:18%;background:#faad14"><em>18</em><span>丁</span></div>
+                      <div class="bar" style="height:3%;background:#ff4d4f"><em>3</em><span>不及格</span></div>
+                    </div>
+                  </div>
+                  <div class="table-wrap" style="margin-top:28px;">
+                    <table class="data">
+                      <thead><tr><th>等级</th><th>成绩区间</th><th>人数</th><th>占比</th></tr></thead>
+                      <tbody>
+                        <tr><td>甲</td><td>90 – 100</td><td>20</td><td>19.0%</td></tr>
+                        <tr><td>乙</td><td>80 – 89</td><td>36</td><td>34.3%</td></tr>
+                        <tr><td>丙</td><td>70 – 79</td><td>28</td><td>26.7%</td></tr>
+                        <tr><td>丁</td><td>60 – 69</td><td>18</td><td>17.1%</td></tr>
+                        <tr><td>不及格</td><td>&lt; 60</td><td>3</td><td>2.9%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div>
+                  <h4 style="font-size:14px;margin-bottom:10px;">正态分布可视化</h4>
+                  <div class="chart-box normal-chart-wrap">
+                    <svg id="normalSvg" viewBox="0 0 400 180" width="100%" height="180" aria-label="成绩正态分布">
+                      <line x1="30" y1="150" x2="380" y2="150" stroke="#bbb" />
+                      <line x1="30" y1="20" x2="30" y2="150" stroke="#bbb" />
+                      <path d="M40,145 C80,140 100,40 200,35 C300,40 320,140 360,145" fill="none" stroke="#1677ff" stroke-width="2.5" />
+                      <path d="M40,145 C80,140 100,40 200,35 C300,40 320,140 360,145 L360,150 L40,150 Z" fill="rgba(22,119,255,.15)" />
+                      <line x1="200" y1="35" x2="200" y2="150" stroke="#52c41a" stroke-dasharray="4 3" />
+                      <text x="190" y="28" font-size="11" fill="#52c41a">μ=76.4</text>
+                      <text x="70" y="168" font-size="10" fill="#888">42</text>
+                      <text x="190" y="168" font-size="10" fill="#888">76</text>
+                      <text x="340" y="168" font-size="10" fill="#888">96</text>
+                      <text x="150" y="16" font-size="11" fill="#666">成绩分布曲线（近似正态）</text>
+                    </svg>
+                    <p class="hint">偏度 ≈ -0.12 · 峰度 ≈ 0.08 · 判定：近似服从正态分布</p>
+                  </div>
+                  <h4 style="font-size:14px;margin:16px 0 10px;">班级间对比（平均分）</h4>
+                  <div class="table-wrap">
+                    <table class="data">
+                      <thead><tr><th>班级</th><th>平均分</th><th>及格率</th><th>优良率</th><th>对比</th></tr></thead>
+                      <tbody>
+                        <tr><td>01班</td><td>78.2</td><td>93%</td><td>30%</td><td><span class="tag tag-green">高于课程均值</span></td></tr>
+                        <tr><td>02班</td><td>74.1</td><td>88%</td><td>22%</td><td><span class="tag tag-orange">低于课程均值</span></td></tr>
+                        <tr><td>03班</td><td>76.9</td><td>92%</td><td>28%</td><td><span class="tag tag-blue">接近均值</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-class">
+          <div class="card">
+            <div class="card-hd">
+              <span>班级考核数据分析 · 教学班01（多课程对比）</span>
+              <button class="btn btn-sm" onclick="exportAnalysis('class')">导出 PDF（含图表）</button>
+            </div>
+            <div class="card-bd">
+              <div class="table-wrap" style="margin-bottom:16px;">
+                <table class="data">
+                  <thead>
+                    <tr><th>课程</th><th>最高分</th><th>最低分</th><th>平均分</th><th>优秀率</th><th>及格率</th><th>不及格率</th><th>方差</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>高等数学</td><td>96</td><td>51</td><td>78.2</td><td>18%</td><td>93%</td><td>7%</td><td>86.4</td></tr>
+                    <tr><td>大学英语</td><td>94</td><td>58</td><td>80.1</td><td>22%</td><td>96%</td><td>4%</td><td>62.1</td></tr>
+                    <tr><td>程序设计</td><td>100</td><td>45</td><td>74.5</td><td>15%</td><td>89%</td><td>11%</td><td>110.2</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="grid-2">
+                <div class="card" style="margin:0;">
+                  <div class="card-hd">最高分对比</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:96%"><em>96</em><span>高数</span></div>
+                      <div class="bar" style="height:94%"><em>94</em><span>英语</span></div>
+                      <div class="bar" style="height:100%;background:#52c41a"><em>100</em><span>程设</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="margin:0;">
+                  <div class="card-hd">最低分对比</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:51%;background:#faad14"><em>51</em><span>高数</span></div>
+                      <div class="bar" style="height:58%"><em>58</em><span>英语</span></div>
+                      <div class="bar" style="height:45%;background:#ff4d4f"><em>45</em><span>程设</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="margin:0;">
+                  <div class="card-hd">平均分对比</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:78%"><em>78.2</em><span>高数</span></div>
+                      <div class="bar" style="height:80%"><em>80.1</em><span>英语</span></div>
+                      <div class="bar" style="height:74%"><em>74.5</em><span>程设</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="margin:0;">
+                  <div class="card-hd">优秀率对比</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:72%"><em>18%</em><span>高数</span></div>
+                      <div class="bar" style="height:88%;background:#52c41a"><em>22%</em><span>英语</span></div>
+                      <div class="bar" style="height:60%"><em>15%</em><span>程设</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="margin:0;">
+                  <div class="card-hd">及格率对比</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:93%"><em>93%</em><span>高数</span></div>
+                      <div class="bar" style="height:96%;background:#52c41a"><em>96%</em><span>英语</span></div>
+                      <div class="bar" style="height:89%"><em>89%</em><span>程设</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="margin:0;">
+                  <div class="card-hd">不及格率对比</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart">
+                      <div class="bar" style="height:35%;background:#faad14"><em>7%</em><span>高数</span></div>
+                      <div class="bar" style="height:20%"><em>4%</em><span>英语</span></div>
+                      <div class="bar" style="height:55%;background:#ff4d4f"><em>11%</em><span>程设</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="margin:0;grid-column:1 / -1;">
+                  <div class="card-hd">方差对比（离散程度）</div>
+                  <div class="card-bd chart-box">
+                    <div class="bar-chart" style="max-width:480px;">
+                      <div class="bar" style="height:70%"><em>86.4</em><span>高数</span></div>
+                      <div class="bar" style="height:50%;background:#52c41a"><em>62.1</em><span>英语</span></div>
+                      <div class="bar" style="height:90%;background:#faad14"><em>110.2</em><span>程设</span></div>
+                    </div>
+                    <p class="hint" style="margin-top:24px;">方差越大，班级内成绩离散越大；程设方差最高，分化更明显。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

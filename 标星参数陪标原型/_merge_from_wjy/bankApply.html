@@ -1,0 +1,89 @@
+<section class="page" id="page-bankApply">
+        <div class="notice"><span class="star">★</span>（8）建库申请：①课程负责人提交建库申请（关联课程、题量/题型/难易度目标），通过后按参数自动建库；②题库可密码锁定；③支持课程题库与综合题库——综合题库关联课程可多选；申请记录可点击审批状态查看当前流程节点。</div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-hd">提交建库申请</div>
+            <div class="card-bd">
+              <div class="form-row">
+                <div class="form-item"><label>题库类型</label>
+                  <select id="bankApplyType">
+                    <option value="single">单门课程题库</option>
+                    <option value="multi">综合题库</option>
+                  </select>
+                </div>
+                <div class="form-item" id="bankCourseSingleWrap">
+                  <label><span class="req">*</span>关联课程</label>
+                  <select id="bankCourseSingle">
+                    <option>高等数学</option>
+                    <option>线性代数</option>
+                    <option>概率论与数理统计</option>
+                    <option>大学英语</option>
+                    <option>程序设计基础</option>
+                  </select>
+                </div>
+              </div>
+              <div id="bankCourseMultiWrap" style="display:none;margin-bottom:14px;">
+                <label style="font-size:13px;color:#555;"><span class="req">*</span>关联课程（综合题库可多选） <span class="hint" id="bankCourseMultiHint">已选 0 门</span></label>
+                <div class="dup-bank-list" id="bankCourseMultiList" style="margin-top:6px;">
+                  <label class="dup-bank-item"><input type="checkbox" value="高等数学" /> 高等数学</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="线性代数" /> 线性代数</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="概率论与数理统计" /> 概率论与数理统计</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="大学英语" /> 大学英语</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="程序设计基础" /> 程序设计基础</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="大学物理" /> 大学物理</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-item"><label>总题量目标</label><input id="bankApplyTarget" type="number" value="800" /></div>
+                <div class="form-item"><label>题型分布目标</label><input id="bankApplyTypes" value="单选40% / 多选20% / 填空20% / 解答20%" /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-item full"><label>难易度分布目标</label><input id="bankApplyDiff" value="易30% / 中50% / 难20%" /></div>
+              </div>
+              <div class="inline-checks" style="margin-bottom:12px;">
+                <label><input type="checkbox" id="bankApplyAudit" checked /> 启用入库审核流程（保障试题质量）</label>
+                <label><input type="checkbox" id="bankApplyLock" /> 创建后启用密码锁定</label>
+              </div>
+              <button class="btn btn-primary" type="button" onclick="submitBankApply()">提交申请</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd">题库安全</div>
+            <div class="card-bd">
+              <div class="form-row">
+                <div class="form-item"><label>题库密码锁定</label>
+                  <input type="password" placeholder="设置访问密码" />
+                  <div class="hint">管理员和成员访问题库需输入密码验证</div>
+                </div>
+              </div>
+              <button class="btn" onclick="toast('密码锁定已启用')">启用锁定</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd">申请记录 <span class="hint">点击「状态」可查看审批流程进度</span></div>
+          <div class="card-bd table-wrap">
+            <table class="data">
+              <thead><tr><th>申请单号</th><th>关联课程</th><th>类型</th><th>题量目标</th><th>状态</th><th>结果</th><th>操作</th></tr></thead>
+              <tbody id="bankApplyBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd">
+            <span>已建成题库 <span class="hint" id="createdBankCountHint"></span></span>
+            <input type="search" id="createdBankKeyword" placeholder="搜索题库名称/课程" style="width:200px" />
+          </div>
+          <div class="card-bd table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>题库名称</th><th>类型</th><th>关联课程</th><th>题量/目标</th>
+                  <th>锁定</th><th>来源申请</th><th>建成时间</th><th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="createdBankBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>

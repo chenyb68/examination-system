@@ -1,0 +1,104 @@
+<section class="page" id="page-scheme">
+        <div class="notice"><span class="star">★</span>② 考核方案管理：可添加/删除形成性与终结性具体任务；系统根据各任务权重自动识别形成性、终结性总占比；方案未变更无需重复提交；填报完成后自动关联考核任务（网上阅卷 / 在线考试 / 登分与自动统计）。</div>
+        <div class="card">
+          <div class="card-hd">
+            <span>课程考核方案填报 · <span id="schemeCourseName">大学英语</span></span>
+            <span class="hint" id="schemeDirtyHint">当前方案与已生效版本一致 · 无需重复提交</span>
+          </div>
+          <div class="card-bd">
+            <div class="form-row">
+              <div class="form-item"><label>课程名称</label>
+                <select id="schemeCourse">
+                  <option value="大学英语">大学英语</option>
+                  <option value="高等数学">高等数学</option>
+                  <option value="程序设计基础">程序设计基础</option>
+                </select>
+              </div>
+              <div class="form-item"><label>学分 / 学时</label><input id="schemeCredit" value="4 / 64" /></div>
+              <div class="form-item"><label>成绩类型</label>
+                <select id="schemeScoreType">
+                  <option value="score-100">分数制 · 满分 100</option>
+                  <option value="score-150">分数制 · 满分 150</option>
+                  <option value="grade-abcd">等级制 · A / B / C / D</option>
+                  <option value="grade-jia">等级制 · 甲 / 乙 / 丙 / 丁</option>
+                </select>
+              </div>
+              <div class="form-item"><label>是否一票否决</label>
+                <select id="schemeVeto"><option>是（终结性不及格则总评不及格）</option><option>否</option></select>
+              </div>
+            </div>
+            <div class="card" id="schemeScoreDetailCard" style="border-style:dashed;margin-bottom:14px;">
+              <div class="card-hd"><span id="schemeScoreDetailTitle">成绩类型细则 · 分数制（满分100）</span></div>
+              <div class="card-bd" id="schemeScoreDetailBody"></div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:14px;">
+              <div class="stat-box">
+                <div class="num" id="formativeRatioNum">40%</div>
+                <div class="lbl">形成性考核占比（智能归一化后）</div>
+              </div>
+              <div class="stat-box">
+                <div class="num" id="summativeRatioNum">60%</div>
+                <div class="lbl">终结性考核占比（智能归一化后）</div>
+              </div>
+            </div>
+            <div class="notice" id="schemeWeightTip" style="background:#e6f4ff;border-color:#91caff;color:#0958d9;"></div>
+            <div class="btn-group" style="margin-bottom:14px;">
+              <button type="button" class="btn btn-sm btn-primary" onclick="normalizeSchemeWeights()">一键将任务权重归一化为合计 100%</button>
+              <span class="hint" id="schemeRawWeightHint"></span>
+            </div>
+
+            <div class="flex-hd">
+              <h4 style="margin:8px 0 12px;font-size:14px;">形成性考核任务 <span class="hint" id="formativeRatioTitle">（当前占比 40%）</span></h4>
+              <button class="btn btn-sm btn-primary" type="button" onclick="addSchemeTask('f')">+ 添加形成性任务</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data" id="formativeTable">
+                <thead><tr><th>考核项目</th><th>考核形式</th><th>权重（相对值）</th><th>归一化后%</th><th>成绩评定标准</th><th>操作</th></tr></thead>
+                <tbody id="formativeBody"></tbody>
+              </table>
+            </div>
+
+            <div class="flex-hd" style="margin-top:16px;">
+              <h4 style="margin:8px 0 12px;font-size:14px;">终结性考核任务 <span class="hint" id="summativeRatioTitle">（当前占比 60%）</span></h4>
+              <button class="btn btn-sm btn-primary" type="button" onclick="addSchemeTask('s')">+ 添加终结性任务</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data" id="summativeTable">
+                <thead><tr><th>考核项目</th><th>考核形式</th><th>权重（相对值）</th><th>归一化后%</th><th>成绩评定标准</th><th>操作</th></tr></thead>
+                <tbody id="summativeBody"></tbody>
+              </table>
+            </div>
+
+            <div class="divider"></div>
+            <div class="card" style="border-style:dashed;margin-bottom:0;">
+              <div class="card-hd">填报完成后自动关联的考核任务（系统呈现）</div>
+              <div class="card-bd">
+                <div class="task-link-grid" id="schemeTaskLinks">
+                  <div class="task-link-item on" data-task="onlineMark">
+                    <div class="task-title">网上阅卷</div>
+                    <div class="task-desc">终结性含纸笔/网上阅卷时自动开通阅卷任务与阅卷员分配</div>
+                    <div class="task-status">将自动关联</div>
+                  </div>
+                  <div class="task-link-item on" data-task="onlineExam">
+                    <div class="task-title">在线考试</div>
+                    <div class="task-desc">形成性/终结性任务含在线考试时自动创建考试场次</div>
+                    <div class="task-status">将自动关联</div>
+                  </div>
+                  <div class="task-link-item on" data-task="scoreStat">
+                    <div class="task-title">成绩登分与自动统计</div>
+                    <div class="task-desc" id="scoreStatDesc">按当前识别的形成性/终结性占比汇总成绩，生成总评与等级</div>
+                    <div class="task-status">将自动关联</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="btn-group" style="margin-top:14px;">
+              <button class="btn" id="btnSchemeSave" onclick="saveSchemeDraft()">保存草稿</button>
+              <button class="btn btn-primary" id="btnSchemeSubmit" onclick="submitScheme()">提交方案并关联任务</button>
+              <button class="btn" onclick="openModal('modalHistory')">查看历史考核方案</button>
+            </div>
+          </div>
+        </div>
+      </section>

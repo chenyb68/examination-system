@@ -1,0 +1,42 @@
+<section class="page" id="page-paperDup">
+        <div class="notice"><span class="star">★</span>（10）试卷查重：查询当前试卷与卷库中指定试卷的题目重复比例；对比卷支持多选；查重结果可一键定位查看重复题。</div>
+        <div class="card">
+          <div class="card-hd">查重设置</div>
+          <div class="card-bd">
+            <div class="form-row">
+              <div class="form-item"><label>当前试卷</label>
+                <select id="dupCurrentPaper">
+                  <option value="cur-2026a">高等数学期末A卷（2026春）</option>
+                  <option value="cur-2026b">高等数学期末B卷（2026春）</option>
+                </select>
+              </div>
+              <div class="form-item full"><label>对比卷库试卷（可多选） <span class="hint" id="dupSelectedHint">已选 2 份</span></label>
+                <div class="dup-bank-list" id="dupBankList">
+                  <label class="dup-bank-item"><input type="checkbox" value="bank-2025a" data-name="高等数学期末A卷（2025秋）" checked /> 高等数学期末A卷（2025秋）</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="bank-2025b" data-name="高等数学期末B卷（2025秋）" checked /> 高等数学期末B卷（2025秋）</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="bank-2025s" data-name="高等数学期末A卷（2025春）" /> 高等数学期末A卷（2025春）</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="bank-2024a" data-name="高等数学期末A卷（2024秋）" /> 高等数学期末A卷（2024秋）</label>
+                  <label class="dup-bank-item"><input type="checkbox" value="bank-mid" data-name="高等数学期中卷（2025秋）" /> 高等数学期中卷（2025秋）</label>
+                </div>
+                <div class="btn-group" style="margin-top:8px;">
+                  <button type="button" class="btn btn-sm" onclick="dupSelectAll(true)">全选</button>
+                  <button type="button" class="btn btn-sm" onclick="dupSelectAll(false)">清空</button>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="runDupCheck()">开始查重</button>
+          </div>
+        </div>
+        <div class="card" id="dupResult" style="display:none;">
+          <div class="card-hd">
+            <span>查重结果 · 总重复比例 <span class="tag tag-orange" id="dupRateTag">—</span> <span class="hint" id="dupCompareHint"></span></span>
+            <button type="button" class="btn btn-sm btn-primary" onclick="locateAllDupQuestions()">一键定位全部重复题</button>
+          </div>
+          <div class="card-bd table-wrap">
+            <table class="data">
+              <thead><tr><th>当前题</th><th>重复来源卷</th><th>来源题</th><th>相似度</th><th>操作</th></tr></thead>
+              <tbody id="dupResultBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>

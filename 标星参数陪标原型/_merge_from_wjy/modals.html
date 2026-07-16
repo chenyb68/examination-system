@@ -1,0 +1,184 @@
+<div class="modal-mask" id="modalHistory">
+    <div class="modal" style="width:760px">
+      <div class="modal-hd">历史考核方案 <button class="btn-link" onclick="closeModal('modalHistory')">关闭</button></div>
+      <div class="modal-bd">
+        <div class="notice" style="margin-bottom:12px;">考核方案维持不动时无需重复提交。可「查看」详情，或「一键覆盖使用」将历史版本直接写入当前填报表（覆盖后需重新提交才生效）。</div>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>版本</th><th>课程</th><th>提交时间</th><th>成绩类型</th><th>形成性/终结性</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>V3（当前生效）</td><td>大学英语</td><td>2026-03-10</td><td>分数制·满分100</td><td>40% / 60%</td>
+                <td><span class="tag tag-green">生效中</span></td>
+                <td class="ops">
+                  <button class="btn-link" onclick="viewHistoryScheme('v3')">查看</button>
+                  <button class="btn-link" onclick="applyHistoryScheme('v3')">一键覆盖使用</button>
+                </td>
+              </tr>
+              <tr>
+                <td>V2</td><td>大学英语</td><td>2025-09-01</td><td>分数制·满分150</td><td>50% / 50%</td>
+                <td><span class="tag tag-gray">历史</span></td>
+                <td class="ops">
+                  <button class="btn-link" onclick="viewHistoryScheme('v2')">查看</button>
+                  <button class="btn-link" onclick="applyHistoryScheme('v2')">一键覆盖使用</button>
+                </td>
+              </tr>
+              <tr>
+                <td>V1</td><td>大学英语</td><td>2025-02-20</td><td>等级制·甲乙丙丁</td><td>40% / 60%</td>
+                <td><span class="tag tag-gray">历史</span></td>
+                <td class="ops">
+                  <button class="btn-link" onclick="viewHistoryScheme('v1')">查看</button>
+                  <button class="btn-link" onclick="applyHistoryScheme('v1')">一键覆盖使用</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="historyDetail" style="display:none;margin-top:14px;border:1px solid #e8e8e8;border-radius:4px;padding:12px;background:#fafafa;"></div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalRoleEdit">
+    <div class="modal" style="width:720px">
+      <div class="modal-hd"><span id="roleModalTitle">编辑角色</span> <button class="btn-link" onclick="closeModal('modalRoleEdit')">关闭</button></div>
+      <div class="modal-bd">
+        <div class="form-row">
+          <div class="form-item"><label><span class="req">*</span>角色名称</label><input id="roleNameInput" placeholder="如：教研室秘书" /></div>
+          <div class="form-item"><label>角色说明</label><input id="roleDescInput" placeholder="职责说明" /></div>
+        </div>
+        <div class="flex-hd" style="margin:8px 0;">
+          <strong style="font-size:13px;">角色人员</strong>
+          <button type="button" class="btn btn-sm" onclick="addRolePersonRow()">+ 添加人员</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>姓名</th><th>工号/账号</th><th>所属部门</th><th>联系方式</th><th>操作</th></tr></thead>
+            <tbody id="rolePeopleBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn" onclick="closeModal('modalRoleEdit')">取消</button>
+        <button class="btn btn-primary" onclick="saveRoleEditor()">保存角色</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalBankAdd">
+    <div class="modal" style="width:520px">
+      <div class="modal-hd">添加题库成员 <button class="btn-link" onclick="closeModal('modalBankAdd')">关闭</button></div>
+      <div class="modal-bd">
+        <div class="form-row">
+          <div class="form-item"><label><span class="req">*</span>姓名</label><input id="bankAddName" placeholder="如：孙老师" /></div>
+          <div class="form-item"><label>部门/信息</label><input id="bankAddDept" placeholder="如：计算机学院" /></div>
+        </div>
+        <div class="form-item"><label>身份</label>
+          <select id="bankAddRole"><option>成员</option><option>题库管理员</option></select>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn" onclick="closeModal('modalBankAdd')">取消</button>
+        <button class="btn btn-primary" onclick="confirmAddBankMember()">确认添加</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalDupLocate">
+    <div class="modal" style="width:780px">
+      <div class="modal-hd">
+        <span id="dupLocateTitle">定位重复题</span>
+        <button class="btn-link" onclick="closeModal('modalDupLocate')">关闭</button>
+      </div>
+      <div class="modal-bd">
+        <div class="hint" id="dupLocateNav" style="margin-bottom:10px;"></div>
+        <div class="grid-2" id="dupLocateCompare"></div>
+        <div class="btn-group" style="margin-top:14px;" id="dupLocateActions"></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn" type="button" id="dupLocatePrev" onclick="dupLocateStep(-1)">上一题</button>
+        <button class="btn" type="button" id="dupLocateNext" onclick="dupLocateStep(1)">下一题</button>
+        <button class="btn btn-primary" onclick="closeModal('modalDupLocate');toast('已定位并标记，可返回编辑')">完成定位</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalBankDetail">
+    <div class="modal" style="width:720px">
+      <div class="modal-hd">
+        <span id="bankDetailTitle">题库详情</span>
+        <button class="btn-link" onclick="closeModal('modalBankDetail')">关闭</button>
+      </div>
+      <div class="modal-bd" id="bankDetailBody"></div>
+      <div class="modal-ft">
+        <button class="btn" onclick="closeModal('modalBankDetail')">关闭</button>
+        <button class="btn btn-primary" id="bankDetailEnterBtn" onclick="toast('已进入题库（演示）')">进入题库</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalBankFlow">
+    <div class="modal" style="width:720px">
+      <div class="modal-hd">
+        <span id="bankFlowTitle">审批流程</span>
+        <button class="btn-link" onclick="closeModal('modalBankFlow')">关闭</button>
+      </div>
+      <div class="modal-bd">
+        <div class="hint" id="bankFlowMeta" style="margin-bottom:12px;"></div>
+        <div class="flow-nodes" id="bankFlowNodes"></div>
+        <div class="table-wrap" style="margin-top:16px;">
+          <table class="data">
+            <thead><tr><th>节点</th><th>审批人</th><th>状态</th><th>时间</th><th>意见</th></tr></thead>
+            <tbody id="bankFlowDetailBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn" onclick="closeModal('modalBankFlow')">关闭</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalDupEdit">
+    <div class="modal" style="width:720px">
+      <div class="modal-hd">
+        <span id="dupEditTitle">编辑重复题</span>
+        <button class="btn-link" onclick="closeModal('modalDupEdit')">关闭</button>
+      </div>
+      <div class="modal-bd">
+        <div class="notice" style="margin-bottom:12px;" id="dupEditHint">修改当前题干后保存，系统将重新估算与来源题的相似度。</div>
+        <div class="form-row">
+          <div class="form-item"><label>题号</label><input id="dupEditNo" readonly /></div>
+          <div class="form-item"><label>题型摘要</label><input id="dupEditType" /></div>
+        </div>
+        <div class="form-item full"><label>当前题干（可修改）</label>
+          <textarea id="dupEditStem" rows="4" placeholder="请修改题干内容以降低重复度"></textarea>
+        </div>
+        <div class="form-item full"><label>来源卷对照（只读）</label>
+          <textarea id="dupEditSrc" rows="3" readonly style="background:#f5f5f5;"></textarea>
+        </div>
+        <div class="hint">原相似度：<strong id="dupEditOldSim">—</strong>　修改后预估：<strong id="dupEditNewSim">—</strong></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn" onclick="closeModal('modalDupEdit')">取消</button>
+        <button class="btn btn-primary" onclick="saveDupQuestionEdit()">保存修改</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-mask" id="modalFixTag">
+    <div class="modal">
+      <div class="modal-hd">修正试题属性 <button class="btn-link" onclick="closeModal('modalFixTag')">关闭</button></div>
+      <div class="modal-bd">
+        <div class="form-row">
+          <div class="form-item"><label>标定难度</label><select><option>易</option><option selected>中</option><option>难</option></select></div>
+          <div class="form-item"><label>知识点</label><input value="级数" /></div>
+        </div>
+        <div class="hint">参考动态属性：使用 7 次 · 得分率 41% · 实际偏难，建议将标定难度调整为「难」。</div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn" onclick="closeModal('modalFixTag')">取消</button>
+        <button class="btn btn-primary" onclick="closeModal('modalFixTag');toast('属性已更新')">保存修正</button>
+      </div>
+    </div>
+  </div>

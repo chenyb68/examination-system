@@ -1,0 +1,28 @@
+<section class="page" id="page-qTag">
+        <div class="notice"><span class="star">★</span> 试题动态标签管理：呈现在用状态、使用次数、得分率、实际难易度等动态属性，帮助命题人持续修正试题属性。</div>
+        <div class="card">
+          <div class="card-hd">
+            <span>试题动态属性一览 <span class="hint" id="qTagCountHint"></span></span>
+            <div class="toolbar" style="margin:0">
+              <select id="qTagStatusFilter" style="width:140px">
+                <option value="">全部状态</option>
+                <option value="在用">在用</option>
+                <option value="闲置">闲置</option>
+                <option value="停用">停用</option>
+              </select>
+              <input type="search" id="qTagKeyword" placeholder="题干关键词" style="width:160px" />
+            </div>
+          </div>
+          <div class="card-bd table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>题号</th><th>题干摘要</th><th>在用状态</th><th>使用次数</th>
+                  <th>得分率</th><th>标定难度</th><th>实际难易度</th><th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="qTagTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,81 @@
+<section class="page" id="page-answerSheet">
+        <div class="notice"><span class="star">★</span>② 自动生成答题卡：可关联多科目试卷；按试卷结构或预设模板生成；支持二次编辑与实际导出下载；自动生成考试二维码。</div>
+        <div class="card">
+          <div class="card-hd">生成参数</div>
+          <div class="card-bd">
+            <div class="form-row">
+              <div class="form-item"><label>关联试卷</label>
+                <select id="sheetPaper">
+                  <option value="math">高等数学期末A卷</option>
+                  <option value="eng">大学英语期末卷</option>
+                  <option value="cs">程序设计基础期末卷</option>
+                  <option value="phy">大学物理期中卷</option>
+                </select>
+              </div>
+              <div class="form-item"><label>生成方式</label>
+                <select id="sheetGenMode">
+                  <option value="parse">自动解析试卷结构</option>
+                  <option value="template">按预设模板生成</option>
+                </select>
+              </div>
+              <div class="form-item"><label>答题卡模式</label>
+                <select id="sheetMode">
+                  <option value="omr">OMR模式</option>
+                  <option value="ocr">OCR模式</option>
+                  <option value="mix" selected>混合模式</option>
+                </select>
+              </div>
+              <div class="form-item"><label>预设模板</label>
+                <select id="sheetTemplate">
+                  <option value="a4-v">标准A4纵向 · 单栏客观+主观</option>
+                  <option value="a4-h">标准A4横向 · 双栏客观题</option>
+                  <option value="a3">A3双栏 · 左客观右主观</option>
+                  <option value="eng-tpl">英语专用 · 听力/阅读分区</option>
+                  <option value="cs-tpl">程设专用 · 判断+程序填空分区</option>
+                </select>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="genSheet()">生成答题卡</button>
+              <button class="btn" id="btnSheetEdit" onclick="toggleSheetEdit()">二次编辑</button>
+              <button class="btn" onclick="exportSheet('pdf')">导出 PDF</button>
+              <button class="btn" onclick="exportSheet('docx')">导出 Word</button>
+            </div>
+            <div class="hint" style="margin-top:8px;" id="sheetStructHint">当前试卷结构：单选20 · 多选5 · 填空8 · 解答4</div>
+            <div class="hint" id="sheetTplHint">预设模板：A4纵向单栏 — 生成后按纵向单栏排版</div>
+          </div>
+        </div>
+
+        <div class="grid-2" id="sheetWorkArea" style="display:none;">
+          <div class="card">
+            <div class="card-hd">答题卡预览（含考试二维码）
+              <span>
+                <span class="tag tag-blue" id="sheetModeTag">混合模式</span>
+                <span class="tag tag-gold" id="sheetTplTag">A4纵向</span>
+              </span>
+            </div>
+            <div class="card-bd">
+              <div class="sheet-preview" id="sheetPreview" contenteditable="false"></div>
+            </div>
+          </div>
+          <div class="card" id="sheetEditPanel" style="display:none;">
+            <div class="card-hd">二次编辑面板</div>
+            <div class="card-bd">
+              <div class="form-item"><label>答题卡标题</label><input id="editSheetTitle" /></div>
+              <div class="form-item"><label>页眉说明</label><input id="editSheetHeader" value="姓名：________　学号：________　考号：________" /></div>
+              <div class="form-item"><label>客观题起始题号</label><input id="editObjStart" type="number" value="1" /></div>
+              <div class="form-item"><label>每行选项数</label><select id="editOptPerRow"><option>4</option><option selected>5</option><option>6</option></select></div>
+              <div class="form-item full"><label>主观题区说明（可改）</label><textarea id="editSubjNote" rows="3"></textarea></div>
+              <div class="inline-checks" style="margin-bottom:12px;">
+                <label><input type="checkbox" id="editShowQr" checked /> 显示考试二维码</label>
+                <label><input type="checkbox" id="editShowOmr" checked /> 显示 OMR 填涂区</label>
+                <label><input type="checkbox" id="editShowOcr" checked /> 显示 OCR 手写区</label>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-primary" onclick="applySheetEdit()">应用编辑到预览</button>
+                <button class="btn" onclick="toggleSheetEdit(false)">完成编辑</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

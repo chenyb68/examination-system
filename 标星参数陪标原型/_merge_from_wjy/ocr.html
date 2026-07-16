@@ -1,0 +1,57 @@
+<section class="page" id="page-ocr">
+        <div class="notice"><span class="star">★</span> OCR手写体识别：关联多场考试；识别学号、考号、字母题（如单词）、判断题（文字 / 大于小于符号）；选择题填涂由 OMR 负责，本模块不处理；识别后对照正确答案自动评分。</div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-hd">扫描 / 上传 · OCR 识别区</div>
+            <div class="card-bd">
+              <div class="form-row">
+                <div class="form-item"><label>关联考试</label>
+                  <select id="ocrExam">
+                    <option value="math">高等数学期末</option>
+                    <option value="eng">大学英语期末</option>
+                    <option value="cs">程序设计基础期末</option>
+                    <option value="phy">大学物理期中</option>
+                  </select>
+                </div>
+                <div class="form-item"><label>扫描模式</label>
+                  <select><option>彩色扫描</option><option>灰度扫描</option></select>
+                </div>
+              </div>
+              <div class="inline-checks" style="margin-bottom:12px;">
+                <label><input type="checkbox" checked disabled /> 学号（手写）</label>
+                <label><input type="checkbox" checked disabled /> 考号（手写）</label>
+                <label><input type="checkbox" checked disabled /> 字母题（单词/符号串）</label>
+                <label><input type="checkbox" checked disabled /> 判断题（对/错、&gt;/&lt;、文字）</label>
+              </div>
+              <div class="notice" style="background:#f5f5f5;border-color:#d9d9d9;color:#666;margin-bottom:12px;">
+                选择题 / 填涂客观题由 <strong>OMR</strong> 模块处理，本页不展示涂黑选项识别。
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-primary" onclick="runOcr()">开始 OCR 识别并自动评分</button>
+                <button class="btn" onclick="toast('已模拟上传彩色答题卡扫描件')">上传图片</button>
+              </div>
+              <div class="card" style="margin-top:14px;margin-bottom:0;border-style:dashed;">
+                <div class="card-hd">本场正确答案（用于自动评分对照）</div>
+                <div class="card-bd table-wrap" id="ocrAnswerKey"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd">识别结果与自动评分</div>
+            <div class="card-bd">
+              <div class="table-wrap">
+                <table class="data">
+                  <thead><tr><th>字段/题号</th><th>类型</th><th>识别结果</th><th>正确答案</th><th>置信度</th><th>评分</th></tr></thead>
+                  <tbody id="ocrResultBody">
+                    <tr><td colspan="6" style="text-align:center;color:#999;">请选择考试后点击「开始 OCR 识别并自动评分」</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="stat-box" style="margin-top:12px;" id="ocrScoreSummary">
+                <div class="lbl">自动评分汇总</div>
+                <div class="num" style="font-size:16px;margin-top:6px;">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
